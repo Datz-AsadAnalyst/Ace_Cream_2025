@@ -18,8 +18,8 @@ int back[] = {A4, A0, A3, A1, A2};
 ///black 1
 //white 0
 
-int MID_right = 10;
-int MID_left = 11;
+int MID_right = 9;
+int MID_left = 10;
 
 
 // // Sensor Pins - Front
@@ -61,11 +61,11 @@ void linefollow(int speed)
   }
   else if (frontLeft == 0 && frontcenter == 1 && frontRight == 1)
   {
-    turnLeft90(25,50);
+    turnLeft90(speed);
   }
   else if (frontLeft == 1 && frontcenter == 1 && frontRight == 0)
   {
-    turnRight90(50,25);
+    turnRight90(speed);
   }
   else
   {
@@ -78,8 +78,9 @@ void lineFollowUntil(int count) {
 
   while (true) {
     int Mid_l = digitalRead(MID_left) ;
+    int Mid_r = digitalRead(MID_right) ;
 
-    if (Mid_l == 1 && !is_line) {
+    if (Mid_l && Mid_r && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -88,7 +89,7 @@ void lineFollowUntil(int count) {
     }
 
     if (strips_count < count) {
-      linefollow(50);
+      linefollow(80);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {
@@ -99,39 +100,7 @@ void lineFollowUntil(int count) {
   }
 }
 
-///////////
-// void linefollowUntil(int strips)
-// {
-//   while (true)
-//   {
-//     int Mid_r = digitalRead(MID_left) ;
-//     unsigned long currentMillis = millis();
 
-//     if (Mid_r == 1 && !is_line)
-//     {
-//       strips_count++;
-//       is_line = true;
-//       previousMillis = currentMillis;
-//     }
-//     else if (currentMillis - previousMillis > intervalMillis)
-//     {
-//       is_line = false;
-//     }
-
-//     if (strips_count < strips)
-//     {
-//       linefollow(50);
-//       Serial.print("hello: ");
-//       Serial.println(strips_count);
-//     }
-//     else
-//     {
-//       stopMotors();
-//       strips_count = 0;
-//       return;
-//     }
-//   }
-// }
 
 void linefollowWithFive(int speed)
 {
@@ -154,19 +123,19 @@ void linefollowWithFive(int speed)
   }
   else if (frontLeft == 0 && frontcenter == 1 && frontRight == 1)
   {
-    turnLeft90(25,50);
+    turnLeft90(speed);
   }
   else if (frontLeftmost == 0 && frontcenter == 1 && frontRight == 1)
   {
-    turnLeft90(25,50);
+    turnLeft90(speed);
   }
   else if (frontLeft == 1 && frontcenter == 1 && frontRight == 0)
   {
-    turnRight90(50,25);
+    turnRight90(speed);
   }
   else if (frontLeft == 1 && frontcenter == 1 && frontRightmost == 0)
   {
-    turnRight90(50,25);
+    turnRight90(speed);
   }
   else
   {
@@ -174,17 +143,17 @@ void linefollowWithFive(int speed)
   }
 }
 
-void linefollowFiveUntil(int count) {
+
+
+ void linefollowFiveUntil(int count)
+{
   int strips_count = 0;
 
   while (true) {
-    int frontLeftmost = analogRead(front[0]) > 700 ? 1 : 0;
-  int frontLeft = analogRead(front[1]) > 700 ? 1 : 0;
-  int frontcenter = analogRead(front[2]) > 700 ? 1 : 0;
-    int frontRight = analogRead(front[3]) > threshold ? 1 : 0;
-    int frontRightmost = analogRead(front[4]) > threshold ? 1 : 0;
+    int Mid_l = digitalRead(MID_left) ;
+    int Mid_r = digitalRead(MID_right) ;
 
-    if (!frontLeftmost && !frontLeft && !frontcenter && !frontRight && !frontRightmost && !is_line) {
+    if (Mid_l && Mid_r && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -193,7 +162,7 @@ void linefollowFiveUntil(int count) {
     }
 
     if (strips_count < count) {
-      linefollowWithFive(50);
+      linefollowWithFive(80);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {
@@ -203,39 +172,6 @@ void linefollowFiveUntil(int count) {
     }
   }
 }
-
-// void linefollowFiveUntil(int strips)
-// {
-//   while (true)
-//   {
-//     int Mid_r = digitalRead(MID_left) ;
-//     unsigned long currentMillis = millis();
-
-//     if (Mid_r == 1 && !is_line)
-//     {
-//       strips_count++;
-//       is_line = true;
-//       previousMillis = currentMillis;
-//     }
-//     else if (currentMillis - previousMillis > intervalMillis)
-//     {
-//       is_line = false;
-//     }
-
-//     if (strips_count < strips)
-//     {
-//       linefollowWithFive(50);
-//       Serial.print("hello: ");
-//       Serial.println(strips_count);
-//     }
-//     else
-//     {
-//       stopMotors();
-//       strips_count = 0;
-//       return;
-//     }
-//   }
-// }
 void backLinefollow(int speed)
 {
   // white 1
@@ -255,11 +191,11 @@ void backLinefollow(int speed)
   }
   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
   {
-    turnRight90(25,50);
+    turnRight90(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
   {
-    turnLeft90(50,25);
+    turnLeft90(speed);
   }
   else
   {
@@ -268,68 +204,35 @@ void backLinefollow(int speed)
 }
 
 
-// void BacklineFollowUntil(int count) {
-//   int strips_count = 0;
 
-//   while (true) {
-//     int backLeftmost = analogRead(back[0]) > 700 ? 1 : 0;
-//   int backLeft = analogRead(back[1]) > 700 ? 1 : 0;
-//   int backcenter = analogRead(back[2]) > 700 ? 1 : 0;
-//     int backRight = analogRead(back[3]) > threshold ? 1 : 0;
-//     int backRightmost = analogRead(back[4]) > threshold ? 1 : 0;
 
-//     if (!backLeftmost && !backLeft && !backcenter && !backRight && !backRightmost && !is_line) {
-//       strips_count++;
-//       is_line = true;
-//       previousMillis = millis();
-//     } else if (millis() - previousMillis > intervalMillis && is_line) {
-//       is_line = false;
-//     }
+void backlinefollowUntil(int count) {
+  int strips_count = 0;
 
-//     if (strips_count < count) {
-//       backLinefollow(50);
-//       Serial.print("Strips: ");
-//       Serial.println(strips_count);
-//     } else {
-
-//       stopMotors();
-//       return;
-//     }
-//   }
-// }
-
-void BacklineFollowUntil(int strips)
-{
-  while (true)
-  {
+  while (true) {
+    int Mid_l = digitalRead(MID_left) ;
     int Mid_r = digitalRead(MID_right) ;
-    unsigned long currentMillis = millis();
 
-    if (Mid_r == 1 && !is_line)
-    {
+    if (Mid_l && Mid_r && !is_line) {
       strips_count++;
       is_line = true;
-      previousMillis = currentMillis;
-    }
-    else if (currentMillis - previousMillis > intervalMillis)
-    {
+      previousMillis = millis();
+    } else if (millis() - previousMillis > intervalMillis && is_line) {
       is_line = false;
     }
 
-    if (strips_count < strips)
-    {
+    if (strips_count < count) {
       backLinefollow(50);
-      Serial.print("hello: ");
+      Serial.print("Strips: ");
       Serial.println(strips_count);
-    }
-    else
-    {
+    } else {
+
       stopMotors();
-      strips_count = 0;
       return;
     }
   }
 }
+
 
 void backLinefollowWithFive(int speed)
 {
@@ -354,19 +257,19 @@ void backLinefollowWithFive(int speed)
   }
   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
   {
-    turnRight90(25,50);
+    turnRight90(speed);
   }
   else if (backLeftmost == 0 && backcenter == 1 && backRight == 1)
   {
-    turnRight90(25,50);
+    turnRight90(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
   {
-    turnLeft90(50,25);
+    turnLeft90(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRightmost == 0)
   {
-   turnLeft90(50,25);
+   turnLeft90(speed);
   }
   else
   {
@@ -375,147 +278,34 @@ void backLinefollowWithFive(int speed)
 }
 
 
-// void backLinefollowFiveUntil(int count) {
-//   int strips_count = 0;
 
-//   while (true) {
-//     int backLeftmost = analogRead(back[0]) > 700 ? 1 : 0;
-//   int backLeft = analogRead(back[1]) > 700 ? 1 : 0;
-//   int backcenter = analogRead(back[2]) > 700 ? 1 : 0;
-//     int backRight = analogRead(back[3]) > threshold ? 1 : 0;
-//     int backRightmost = analogRead(back[4]) > threshold ? 1 : 0;
 
-//     if (!backLeftmost && !backLeft && !backcenter && !backRight && !backRightmost && !is_line) {
-//       strips_count++;
-//       is_line = true;
-//       previousMillis = millis();
-//     } else if (millis() - previousMillis > intervalMillis && is_line) {
-//       is_line = false;
-//     }
+void backlinefollowfiveUntil(int count) {
+  int strips_count = 0;
 
-//     if (strips_count < count) {
-//       backLinefollowWithFive(50);
-//       Serial.print("Strips: ");
-//       Serial.println(strips_count);
-//     } else {
-
-//       stopMotors();
-//       return;
-//     }
-//   }
-// }
-
-void backlinefollowFiveUntil(int strips)
-{
-  while (true)
-  {
+  while (true) {
+    int Mid_l = digitalRead(MID_left) ;
     int Mid_r = digitalRead(MID_right) ;
-    unsigned long currentMillis = millis();
 
-    if (Mid_r == 1 && !is_line)
-    {
+    if (Mid_l && Mid_r && !is_line) {
       strips_count++;
       is_line = true;
-      previousMillis = currentMillis;
-    }
-    else if (currentMillis - previousMillis > intervalMillis)
-    {
+      previousMillis = millis();
+    } else if (millis() - previousMillis > intervalMillis && is_line) {
       is_line = false;
     }
 
-    if (strips_count < strips)
-    {
+    if (strips_count < count) {
       backLinefollowWithFive(50);
-      Serial.print("hello: ");
+      Serial.print("Strips: ");
       Serial.println(strips_count);
-    }
-    else
-    {
+    } else {
+
       stopMotors();
-      strips_count = 0;
       return;
     }
   }
 }
-// //////Front
-// void lineFollow() {
-//   int frontLM = analogRead(frontLeftMost) > threshold ? 1 : 0;
-//   int frontL = analogRead(frontLeft) > threshold ? 1 : 0;
-//   int frontC = analogRead(frontMiddle) > threshold ? 1 : 0;
-//   int frontR = analogRead(frontRight) > threshold ? 1 : 0;
-//   int frontRM = analogRead(frontRightMost) > threshold ? 1 : 0;
-
-// // int sensors[] = {
-// //     analogRead(frontLeftMost) > threshold,
-// //     analogRead(frontLeft) > threshold,
-// //     analogRead(frontMiddle) > threshold,
-// //     analogRead(frontRight) > threshold,
-// //     analogRead(frontRightMost) > threshold
-// //   }; // **Compressed sensor reading using array**
-
-
-// //    if (sensors[1] == 1 && sensors[2] == 0 && sensors[3] == 1) {
-// //     moveForward(60);
-// //   } else if ((sensors[1] == 0 && sensors[2] == 0 && sensors[3] == 1) ||
-// //              (sensors[1] == 0 && sensors[2] == 1 && sensors[3] == 1)) {
-// //     turnLeft(60);
-// //   } else if ((sensors[1] == 1 && sensors[2] == 0 && sensors[3] == 0) ||
-// //              (sensors[1] == 1 && sensors[2] == 1 && sensors[3] == 0)) {
-// //     turnRight(60);
-// //   }
-
-//   if (frontL == 0 && frontC == 0 && frontR == 0) {
-//     moveForward(50);
-//   } else if (frontL == 1 && frontC == 0 && frontR == 1) {
-//     moveForward(50);
-//   } else if (frontL == 0 && frontC == 0 && frontR == 1) {
-//     turnLeft90(25);
-//   } else if (frontL == 0 && frontC == 1 && frontR == 1) {
-//     turnLeft90(25);
-//   } else if (frontL == 1 && frontC == 0 && frontR == 0) {
-//     turnRight90(25);
-//   } else if (frontL == 1 && frontC == 1 && frontR == 0) {
-//     turnRight90(25);
-//       }
-//     }
-// void linefollowUntil(int strips);
-//   // // 00111
-//   else if (!frontLM && !frontL && frontC && frontR && frontRM) {
-//     turnLeft();
-//     readFrontSensors();
-//     Serial.print("6th");
-//   }
-//   // 01111
-//   else if (!frontLM && frontL && frontC && frontR && frontRM) {
-//     turnLeft();
-//     readFrontSensors();
-//     Serial.print("7th");
-//   }
-//   // 10111
-//   else if (frontLM && !frontL && frontC && frontR && frontRM) {
-//     turnLeft();
-//     readFrontSensors();
-//     Serial.print("8th");
-//   }
-//   // 11100
-//   else if (frontLM && frontL && frontC && !frontR && !frontRM) {
-//     turnRight();
-//     readFrontSensors();
-//     Serial.print("9th");
-//   }
-//   // 11110
-//   else if (frontLM && frontL && frontC && frontR && !frontRM) {
-//     turnRight();
-//     readFrontSensors();
-//     Serial.print("10th");
-//   }
-//   // 11101
-//   else if (frontLM && frontL && frontC && !frontR && frontRM) {
-//     turnRight();
-//     readFrontSensors();
-//     Serial.print("11th");
-//   }
-// }
 
 
 #endif // LINE_FOLLOW_H_

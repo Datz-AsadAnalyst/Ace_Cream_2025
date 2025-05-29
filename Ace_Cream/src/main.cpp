@@ -9,8 +9,8 @@
 int strips_count;
 bool is_line;
 
-unsigned long previousMillis;
-const unsigned long intervalMillis = 100;
+unsigned long previousMillis = 0;
+const unsigned long intervalMillis = 200;
 
 
 // int MID_right = 10;
@@ -123,17 +123,50 @@ void setup() {
 
    Serial.begin(9600);
   configurePins();
-linefollowFiveUntil(4);
-delay(100);
-moveLeftEncoder(150,100,75);
-delay(100);
-//  linefollowFiveUntil(3); 
+lineFollowUntil(4);
+stopMotors();
+delay(1000);
+moveLeftEncoder(290,200);
+delay(1000);
+ linefollowFiveUntil(5); 
+stopMotors();
+delay(1000);
+moveLeftEncoder(290,200);
+delay(1000);
+stopMotors();
+ linefollowFiveUntil(2); 
+ stopMotors();
+delay(1000);
+ moveLeftEncoder(290,200);
+delay(1000);
+stopMotors();
+ linefollowFiveUntil(2); 
+ stopMotors();
+delay(1000);
+ moveRightEncoder(290,200);
+delay(1000);
+stopMotors();
+ linefollowFiveUntil(2); 
+ stopMotors();
+  moveLeftEncoder(300,200);
+delay(1000);
+backlinefollowfiveUntil(4);
+stopMotors();
+delay(1000);
 }
 
 void loop() {
   // readSensorValsDebugDigital(back);
   
   // put your main code here, to run repeatedly:
+  // Serial.print(digitalRead(MID_left));
+  // Serial.print(" ");
+  // Serial.println(digitalRead(MID_right));
+  // Serial.print(" ");
+    
+
+
+
 }
 
 // put function definitions here:

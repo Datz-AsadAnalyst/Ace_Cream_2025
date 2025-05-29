@@ -46,18 +46,18 @@ void softRight() {
 }
 
 // Turn 90 degrees right (in place)
-void turnRight90(int left_speed,int right_speed) {
-  analogWrite(leftMotorForwardPwm, left_speed);
+void turnRight90(int speed) {
+  analogWrite(leftMotorForwardPwm, speed);
   analogWrite(leftMotorBackwardPwm, 0);
   analogWrite(rightMotorForwardPwm, 0);
-  analogWrite(rightMotorBackwardPwm, right_speed);
+  analogWrite(rightMotorBackwardPwm, speed);
 }
 
 // Turn 90 degrees left (in place)
-void turnLeft90(int left_speed,int right_speed) {
+void turnLeft90(int speed) {
   analogWrite(leftMotorForwardPwm, 0);
-  analogWrite(leftMotorBackwardPwm, left_speed);
-  analogWrite(rightMotorForwardPwm, right_speed);
+  analogWrite(leftMotorBackwardPwm, speed);
+  analogWrite(rightMotorForwardPwm, speed);
   analogWrite(rightMotorBackwardPwm, 0);
 }
 

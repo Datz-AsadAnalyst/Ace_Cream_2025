@@ -53,11 +53,11 @@ void moveBackwardEncoder(int targetTicks, int speed) {
   stopMotors();
 }
 
-void moveLeftEncoder(int targetTicks, int left_speed,int right_speed) {
+void moveLeftEncoder(int targetTicks,int speed) {
   leftEncoderTick = 0;
   rightEncoderTick = 0;
 
-  turnLeft90(left_speed,right_speed);
+  turnLeft90(speed);
 
   while (leftEncoderTick < targetTicks && rightEncoderTick < targetTicks) {
     Serial.print("Left Turn -> Left: ");
@@ -69,11 +69,11 @@ void moveLeftEncoder(int targetTicks, int left_speed,int right_speed) {
   stopMotors();
 }
 
-void moveRightEncoder(int targetTicks, int left_speed,int right_speed) {
+void moveRightEncoder(int targetTicks, int speed) {
   leftEncoderTick = 0;
   rightEncoderTick = 0;
 
-  turnRight90(left_speed,right_speed);
+  turnRight90(speed);
 
   while (leftEncoderTick < targetTicks && rightEncoderTick < targetTicks) {
     Serial.print("Right Turn -> Left: ");
