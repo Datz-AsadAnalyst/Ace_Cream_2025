@@ -2,7 +2,7 @@
 #include <Motors.h>
 #include<Encoder.h>
 #include<Line_Follow.h>
-
+#include<Blue_Grid1.h>
 #define LEFT_ENCODER_PIN 2
 #define RIGHT_ENCODER_PIN 3
 
@@ -49,14 +49,8 @@ void readSensorValsDebugDigital(int *sensors)
   int right = analogRead(sensors[3]) > 700 ? 1 : 0;
   int rightmost = analogRead(sensors[4]) > 700 ? 1 : 0;
 
-int Mid_r = digitalRead(MID_right) ;
-int Mid_l = digitalRead(MID_left) ;
 
-  Serial.print(Mid_r);
-Serial.print("  ");
- Serial.print(Mid_l);
-Serial.print("  ");
- Serial.print("analoge");
+ 
   Serial.print(leftmost);
   Serial.print("  ");
   Serial.print(left);
@@ -123,36 +117,11 @@ void setup() {
 
    Serial.begin(9600);
   configurePins();
-lineFollowUntil(4);
-stopMotors();
-delay(1000);
-moveLeftEncoder(290,200);
-delay(1000);
- linefollowFiveUntil(5); 
-stopMotors();
-delay(1000);
-moveLeftEncoder(290,200);
-delay(1000);
-stopMotors();
- linefollowFiveUntil(2); 
- stopMotors();
-delay(1000);
- moveLeftEncoder(290,200);
-delay(1000);
-stopMotors();
- linefollowFiveUntil(2); 
- stopMotors();
-delay(1000);
- moveRightEncoder(290,200);
-delay(1000);
-stopMotors();
- linefollowFiveUntil(2); 
- stopMotors();
-  moveLeftEncoder(300,200);
-delay(1000);
-backlinefollowfiveUntil(4);
-stopMotors();
-delay(1000);
+blue_grid1();
+// linefollowFiveUntil(4);
+// delay(500);
+// moveLeftEncoder(325,80);
+// backlinefollowfiveUntil(3);
 }
 
 void loop() {

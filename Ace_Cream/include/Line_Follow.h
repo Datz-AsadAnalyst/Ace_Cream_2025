@@ -172,15 +172,47 @@ void linefollowWithFive(int speed)
     }
   }
 }
-void backLinefollow(int speed)
+// void backLinefollow(int speed)
+// {
+//   // white 1
+//   // black 0
+
+//   int backLeft = analogRead(back[1]) > 700 ? 1 : 0;
+//   int backcenter = analogRead(back[2]) > 700 ? 1 : 0;
+//     int backRight = analogRead(back[3]) > threshold ? 1 : 0;
+    
+//   if (backLeft == 0 && backcenter == 0 && backRight == 0)
+//   {
+//     moveBackward(speed);
+//   }
+//   else if (backLeft == 1 && backcenter == 0 && backRight == 1)
+//   {
+//     moveBackward(speed);
+//   }
+//   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
+//   {
+//     turnRight90(speed);
+//   }
+//   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
+//   {
+//     turnLeft90(speed);
+//   }
+//   else
+//   {
+//     moveBackward(speed);
+//   }
+// }
+
+/////////////
+void Backlinefollow(int speed)
 {
   // white 1
   // black 0
 
   int backLeft = analogRead(back[1]) > 700 ? 1 : 0;
   int backcenter = analogRead(back[2]) > 700 ? 1 : 0;
-    int backRight = analogRead(back[3]) > threshold ? 1 : 0;
-    
+  int backRight = analogRead(back[3]) > 700 ? 1 : 0;
+
   if (backLeft == 0 && backcenter == 0 && backRight == 0)
   {
     moveBackward(speed);
@@ -191,19 +223,18 @@ void backLinefollow(int speed)
   }
   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
   {
-    turnRight90(speed);
+    turnLeft90(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
   {
-    turnLeft90(speed);
+    turnRight90(speed);
   }
   else
   {
     moveBackward(speed);
   }
 }
-
-
+////////
 
 
 void backlinefollowUntil(int count) {
@@ -222,7 +253,7 @@ void backlinefollowUntil(int count) {
     }
 
     if (strips_count < count) {
-      backLinefollow(50);
+     Backlinefollow(80);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {
@@ -233,19 +264,17 @@ void backlinefollowUntil(int count) {
   }
 }
 
-
-void backLinefollowWithFive(int speed)
+/////////////
+void BacklinefollowWithFive(int speed)
 {
   // white 1
   // black 0
 
-
-
-   int backLeftmost = analogRead(back[0]) > 700 ? 1 : 0;
+  int backLeftmost = analogRead(back[0]) > 700 ? 1 : 0;
   int backLeft = analogRead(back[1]) > 700 ? 1 : 0;
   int backcenter = analogRead(back[2]) > 700 ? 1 : 0;
-    int backRight = analogRead(back[3]) > threshold ? 1 : 0;
-    int backRightmost = analogRead(back[4]) > threshold ? 1 : 0;
+  int backRight = analogRead(back[3]) > threshold ? 1 : 0;
+  int backRightmost = analogRead(back[4]) > threshold ? 1 : 0;
 
   if (backLeft == 0 && backcenter == 0 && backRight == 0)
   {
@@ -257,25 +286,26 @@ void backLinefollowWithFive(int speed)
   }
   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
   {
-    turnRight90(speed);
+    turnLeft90(speed);
   }
   else if (backLeftmost == 0 && backcenter == 1 && backRight == 1)
   {
-    turnRight90(speed);
+    turnLeft90(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
   {
-    turnLeft90(speed);
+    turnRight90(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRightmost == 0)
   {
-   turnLeft90(speed);
+    turnRight90(speed);
   }
   else
   {
     moveBackward(speed);
   }
 }
+
 
 
 
@@ -296,7 +326,7 @@ void backlinefollowfiveUntil(int count) {
     }
 
     if (strips_count < count) {
-      backLinefollowWithFive(50);
+      BacklinefollowWithFive(80);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {
@@ -307,5 +337,52 @@ void backlinefollowfiveUntil(int count) {
   }
 }
 
+
+///////////////
+///Ecnoder Functions
+
+void linefollowEncoder(int ticks)
+{
+  leftEncoderTick = 0;
+  while (leftEncoderTick < ticks)
+  {
+    linefollow(50);
+    interrupts();
+  }
+  stopMotors();
+}
+
+void linefollowFiveEncoder(int ticks)
+{
+  leftEncoderTick = 0;
+  while (leftEncoderTick < ticks)
+  {
+    linefollowWithFive(50);
+    interrupts();
+  }
+  stopMotors();
+}
+
+void backLinefollowEncoder(int ticks)
+{
+  leftEncoderTick = 0;
+  while (leftEncoderTick < ticks)
+  {
+    Backlinefollow(50);
+    interrupts();
+  }
+  stopMotors();
+}
+
+void backLinefollowFiveEncoder(int ticks)
+{
+  leftEncoderTick = 0;
+  while (leftEncoderTick < ticks)
+  {
+    BacklinefollowWithFive(50);
+    interrupts();
+  }
+  stopMotors();
+}
 
 #endif // LINE_FOLLOW_H_
