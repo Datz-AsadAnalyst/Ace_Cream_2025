@@ -2,13 +2,13 @@
 #include<Motors.h>
 #include<Line_Follow.h>
 
-#ifndef _BLUE_GRID8_H_
-#define _BLUE_GRID8_H_
-void blue_grid8(){
+#ifndef _BLUE_GRID11_H_
+#define _BLUE_GRID11_H_
+void blue_grid11(){
 /*
- * Grid 8
+ * Grid 11
  *
- *  grid is 3x3 the points are (1,2), (2,2) and (2,1)
+ *  grid is 3x3 the points are (1,2), (2,2) and (3,1)
 */
 lineFollowUntil(4);
 delay(500);
@@ -34,6 +34,9 @@ moveLeftEncoder(300,100);
 delay(500);
 ///////////Pick 2nd tree/////////
 linefollowFiveEncoder(35);
+delay(500);
+/////line until 1
+linefollowFiveUntil(1);
 delay(500);
 //// right move
 moveRightEncoder(300,100);
@@ -84,4 +87,4 @@ moveForwardEncoder(600,100);
 }
 
 
-#endif // _BLUE_GRID8_H_
+#endif // _BLUE_GRID11_H_
