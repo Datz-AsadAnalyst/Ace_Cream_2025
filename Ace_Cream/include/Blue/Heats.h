@@ -87,56 +87,33 @@ backLinefollowFiveEncoder(10);
 delay(500);
 moveMainToOneEighty();
 delay(500);
-linefollowFiveEncoder(20);
+// linefollowFiveEncoder(20);
 
-// ////////
-// backLinefollowFiveEncoder(10);
-// delay(500);
-rightServo.write(0);
-delay(500);
+
 servoMove(&rightServo,0,70);
 delay(500);
+// ///////////Pick 3rd tree/////////
 linefollowFiveEncoder(20);
 delay(500);
 ///// line until 2
 linefollowFiveUntil(1);
 delay(500);
-// ///////////Pick 2nd tree/////////
-// linefollowFiveEncoder(35);
-// delay(500);
-// ///////////Pick 3rd tree/////////
-// backLinefollowFiveEncoder(35);
-// delay(500);
-/////line until 1
-// linefollowFiveUntil(2);
-// left move
-//  moveLeftEncoder(300,100);
-// delay(500);
 
-
-
-
+///right move
 moveRightEncoder(290,100);
 delay(500);
+/////until 1
 linefollowFiveUntil(1);
 delay(500);
+//left move
 moveLeftEncoder(290,100);
 delay(500);
 linefollowFiveEncoder(10);
 delay(500);
+//until 1
 linefollowFiveUntil(1);
 delay(500);
-
-
-
-
-
-
-
-
-// /// line untill 1
-//  linefollowFiveUntil(1); 
-//  delay(500);
+////////placing 1st /////////////
 linefollowEncoder(50);
 delay(500);
 servoMove(&rightServo,70,0);
@@ -147,7 +124,9 @@ backlinefollowfiveUntil(5);
 delay(500);
 backLinefollowFiveEncoder(20);
 delay(500);
-servoMove(&leftServo,70,0);
+
+//////////placing 2nd //////////
+servoMove(&leftServo,70,30);
 delay(500);
 linefollowFiveEncoder(20);
 delay(500);
@@ -160,6 +139,7 @@ delay(500);
 /////// line untill 4
 linefollowFiveUntil(4);
 delay(500);
+//left move
 moveLeftEncoder(300,100);
 delay(500);
 linefollowFiveEncoder(10);
