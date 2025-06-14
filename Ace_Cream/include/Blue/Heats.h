@@ -2,18 +2,18 @@
 #include<Motors.h>
 #include<Line_Follow.h>
 #include<Servocontrol.h>
-#ifndef _BLUE_GRID9_H_
-#define _BLUE_GRID9_H_
-void blue_grid9(){
+#ifndef _Heats_H_
+#define _Heats_H_
+void heat(){
 /*
  * Grid 9
  *
  *  grid is 3x3 the points are (1,2), (2,1) and (2,3)
 */
 lineFollowUntil(4);
-delay(500);
+delay(1000);
 ///Left move
-moveLeftEncoder(300,100);
+moveLeftEncoder(296,100);
 delay(500);
 linefollowFiveEncoder(50);
 delay(500);
@@ -27,7 +27,7 @@ delay(1000);
 moveLeftEncoder(300,100);
 delay(500);
 
-linefollowFiveEncoder(10);
+linefollowFiveEncoder(20);
 delay(500);
 
 // until 1
@@ -35,10 +35,9 @@ linefollowFiveUntil(1);
 delay(500);
 
 //rightmove
-moveRightEncoder(280,100);
+moveRightEncoder(300,100);
 delay(500);
 
-////// to zero
 leftServo.write(0);
 delay(500);
 
@@ -47,32 +46,36 @@ delay(500);
 
 ////untill 1
 linefollowFiveUntil(1);
-linefollowFiveEncoder(10);
+linefollowFiveEncoder(68);
 delay(100);
 
 // ////////////Pick 1st tree//////////////
 
 servoMove(&leftServo,0,70);
 delay(500);
+ 
+//----
+servoMove(&mainServo,0,72);
+delay(500);
 
-
-// linefollowFiveEncoder(35);
-
-servoMove(&mainServo,0,66);
+linefollowFiveEncoder(10);
 delay(500);
 
 ///////// line until
 linefollowFiveUntil(2);
 delay(500);
 ///left move
-moveLeftEncoder(300,100);
-delay(500);
-backLinefollowFiveEncoder(10);
+moveLeftEncoder(305,100);
 delay(500);
 
-
+backLinefollowFiveEncoder(78);
+delay(500);
+frontServo.write(0);
+delay(500);
+linefollowFiveEncoder(150);
+delay(500);
 // ////////////Pick 2nd tree//////////////
-servoMove(&frontServo,0,80);
+servoMove(&frontServo,0,70);
 delay(500);
 
 
@@ -81,7 +84,7 @@ delay(500);
 linefollowFiveUntil(2);
 delay(500);
 // //////// left move
-moveLeftEncoder(290,100);
+moveLeftEncoder(300,100);
 delay(500);
 backLinefollowFiveEncoder(10);
 delay(500);
@@ -96,21 +99,23 @@ delay(500);
 linefollowFiveEncoder(20);
 delay(500);
 ///// line until 2
-linefollowFiveUntil(1);
+linefollowFiveUntil(2);
 delay(500);
 
 ///right move
-moveRightEncoder(290,100);
+moveRightEncoder(300,100);
 delay(500);
 /////until 1
 linefollowFiveUntil(1);
 delay(500);
 //left move
-moveLeftEncoder(290,100);
+moveLeftEncoder(300,100);
 delay(500);
 linefollowFiveEncoder(10);
 delay(500);
 //until 1
+linefollowFiveEncoder(15);
+delay(500);
 linefollowFiveUntil(1);
 delay(500);
 ////////placing 1st /////////////
@@ -158,4 +163,4 @@ moveForwardEncoder(600,100);
 }
 
 
-#endif // _BLUE_GRID9_H_
+#endif // _HEATS_H_

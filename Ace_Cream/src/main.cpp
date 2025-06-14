@@ -3,7 +3,7 @@
 #include <Encoder.h>
 #include <Line_Follow.h>
 #include "Servocontrol.h"
-#include "Blue/Blue_Grid9.h"
+#include "Blue/Heats.h"
 #define LEFT_ENCODER_PIN 2
 #define RIGHT_ENCODER_PIN 3
 
@@ -110,11 +110,15 @@ void setup()
 
   Serial.begin(9600);
   configurePins();
-//   initServos();
-//   all_set();
-//   delay(1000);
- 
-//  blue_grid9();
+  initServos();
+  all_set();
+  delay(1000);
+  // servoMove(&mainServo,0,60);
+  // mainServo.write(0);
+
+
+  
+//  heat();
 
 
 // backlinefollowfiveUntil(2);
@@ -136,7 +140,7 @@ void setup()
 ////////
 
 
-set();
+// set();
      
     //  rightServo.write(66);
   // servoMove(&frontServo, 0, 66);
@@ -151,7 +155,7 @@ set();
 
 void loop()
 {
-  // readSensorValsDebugDigital(back);
+  // readSensorValsDebugDigital(front);
 
   // put your main code here, to run repeatedly:
   // Serial.print(digitalRead(MID_left));

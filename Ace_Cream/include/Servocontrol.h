@@ -10,10 +10,15 @@ Servo rightServo;
 Servo leftServo;
 Servo frontServo;
 
-int mainServoPin = 49;
-int frontServoPin = 47;
-int leftServoPin = 43;
-int rightServoPin = 45;
+// int mainServoPin = 49;
+// int frontServoPin = 47;
+// int leftServoPin = 43;
+// int rightServoPin = 45;
+
+int mainServoPin = 24;
+int frontServoPin = 26;
+int leftServoPin = 28;
+int rightServoPin = 30;
 
 // Color Sensor Pins
 // int FrontColor = 7;
