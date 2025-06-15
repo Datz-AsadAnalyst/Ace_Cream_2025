@@ -34,7 +34,7 @@ void blue_grid6() {
     /////delay(1000);
 
     // ============ Move to (1,3) ============
-    moveRightEncoder(600, 100); // move across to (1,3)
+    moveRightEncoder(300, 100); // move across to (1,3)
     delay(500);
     linefollowFiveEncoder(60);
     delay(500);
@@ -54,7 +54,7 @@ void blue_grid6() {
     linefollowFiveEncoder(30);
     delay(500);
 /////////// move back
-  backlinefollowfiveUntil(2);
+  backlinefollowfiveUntil(1);
   delay(500);
 
     linefollowFiveUntil(3); // move downward to row 3

@@ -18,8 +18,8 @@ int back[] = {A4, A0, A3, A1, A2};
 ///black 1
 //white 0
 
-int MID_right = 9;
-int MID_left = 10;
+int MID_right = A10;
+int MID_left = A11;
 
 
 // // Sensor Pins - Front
@@ -77,10 +77,14 @@ void lineFollowUntil(int count) {
   int strips_count = 0;
 
   while (true) {
-    int Mid_l = digitalRead(MID_left) ;
-    int Mid_r = digitalRead(MID_right) ;
+    // int Mid_l = digitalRead(MID_left) ;
+    // int Mid_r = digitalRead(MID_right) ;
 
-    if (Mid_l && Mid_r && !is_line) {
+  int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
+  int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
+  
+
+    if (Mid_l==0 && Mid_r==0 && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -150,10 +154,13 @@ void linefollowWithFive(int speed)
   int strips_count = 0;
 
   while (true) {
-    int Mid_l = digitalRead(MID_left) ;
-    int Mid_r = digitalRead(MID_right) ;
+    // int Mid_l = digitalRead(MID_left) ;
+    // int Mid_r = digitalRead(MID_right) ;
 
-    if (Mid_l && Mid_r && !is_line) {
+  int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
+  int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
+
+    if (Mid_l==0 && Mid_r==0 && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -241,10 +248,13 @@ void backlinefollowUntil(int count) {
   int strips_count = 0;
 
   while (true) {
-    int Mid_l = digitalRead(MID_left) ;
-    int Mid_r = digitalRead(MID_right) ;
+    // int Mid_l = digitalRead(MID_left) ;
+    // int Mid_r = digitalRead(MID_right) ;
 
-    if (Mid_l && Mid_r && !is_line) {
+  int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
+  int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
+
+    if (Mid_l==0 && Mid_r==0 && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -314,10 +324,13 @@ void backlinefollowfiveUntil(int count) {
   int strips_count = 0;
 
   while (true) {
-    int Mid_l = digitalRead(MID_left) ;
-    int Mid_r = digitalRead(MID_right) ;
+    // int Mid_l = digitalRead(MID_left) ;
+    // int Mid_r = digitalRead(MID_right) ;
 
-    if (Mid_l && Mid_r && !is_line) {
+  int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
+  int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
+
+    if (Mid_l==0 && Mid_r==0 && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();

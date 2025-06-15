@@ -3,7 +3,8 @@
 #include <Encoder.h>
 #include <Line_Follow.h>
 #include "Servocontrol.h"
-#include "Blue/Heats.h"
+#include <Blue/Blue_Grid19.h>
+
 #define LEFT_ENCODER_PIN 2
 #define RIGHT_ENCODER_PIN 3
 
@@ -40,6 +41,16 @@ int backRightmost = analogRead(back[4]) > threshold ? 1 : 0;
 //   Serial.println();
 //   delay(100);
 // }
+
+void readmid(){
+    int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
+  int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
+  Serial.print(Mid_r);
+  Serial.print(" ");
+  Serial.println(Mid_l);
+
+}
+
 
 void readSensorValsDebugDigital(int *sensors)
 {
@@ -111,14 +122,11 @@ void setup()
   Serial.begin(9600);
   configurePins();
   initServos();
-  all_set();
-  delay(1000);
-  // servoMove(&mainServo,0,60);
-  // mainServo.write(0);
-
-
+  // all_set();
+  // delay(1000);
   
-//  heat();
+//  mainServo.write(6);
+ blue_grid19();
 
 
 // backlinefollowfiveUntil(2);
@@ -162,6 +170,7 @@ void loop()
   // Serial.print(" ");
   // Serial.println(digitalRead(MID_right));
 
+  // readmid();
   // Serial.print(" ");
 }
 

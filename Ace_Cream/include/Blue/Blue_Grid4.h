@@ -13,7 +13,7 @@ void blue_grid4(){
 lineFollowUntil(4);
 delay(500);
 ///Left move
-moveLeftEncoder(300,100);
+moveLeftEncoder(330,100);
 delay(500);
 linefollowFiveEncoder(50);
 delay(500);
@@ -21,26 +21,37 @@ delay(500);
  linefollowFiveUntil(4); 
 delay(1000);
 //// left move
-moveLeftEncoder(300,100);
+moveLeftEncoder(330,100);
 delay(500);
-////////////Pick 1st tree//////////////
-linefollowFiveEncoder(35);
+
+linefollowFiveEncoder(40);
 delay(500);
-///////////Pick 2nd tree/////////
-linefollowFiveEncoder(35);
+linefollowFiveUntil(2);
 delay(500);
+// ////////////Pick 1st tree//////////////
+// linefollowFiveEncoder(35);
+// delay(500);
+// ///////////Pick 2nd tree/////////
+// linefollowFiveEncoder(35);
+// delay(500);
 //////right move
-moveRightEncoder(300,100);
+moveRightEncoder(330,100);
 delay(500);
 ///////////Pick 3rd tree/////////
 linefollowFiveEncoder(35);
 delay(500);
+linefollowFiveUntil(1);
+delay(500);
 /////////left move
-moveLeftEncoder(300,100);
+moveLeftEncoder(330,100);
+delay(500);
 /////line until 2
+linefollowFiveEncoder(35);
+delay(500);
 linefollowFiveUntil(2);
+delay(500);
 // left move
- moveLeftEncoder(300,100);
+ moveLeftEncoder(330,100);
 delay(500);
 /// line untill 2
  linefollowFiveUntil(2); 

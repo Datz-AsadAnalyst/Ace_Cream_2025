@@ -27,7 +27,7 @@ delay(1000);
 moveLeftEncoder(300,100);
 delay(500);
 
-linefollowFiveEncoder(20);
+linefollowFiveEncoder(50);
 delay(500);
 
 // until 1
@@ -41,12 +41,12 @@ delay(500);
 leftServo.write(0);
 delay(500);
 
-linefollowFiveEncoder(30);
+linefollowFiveEncoder(35);
 delay(500);
 
 ////untill 1
 linefollowFiveUntil(1);
-linefollowFiveEncoder(68);
+linefollowFiveEncoder(90);
 delay(100);
 
 // ////////////Pick 1st tree//////////////
@@ -55,7 +55,7 @@ servoMove(&leftServo,0,70);
 delay(500);
  
 //----
-servoMove(&mainServo,0,72);
+servoMove(&mainServo,0,70);
 delay(500);
 
 linefollowFiveEncoder(10);
@@ -72,7 +72,7 @@ backLinefollowFiveEncoder(78);
 delay(500);
 frontServo.write(0);
 delay(500);
-linefollowFiveEncoder(150);
+moveForwardEncoder(180,50);
 delay(500);
 // ////////////Pick 2nd tree//////////////
 servoMove(&frontServo,0,70);
@@ -84,26 +84,32 @@ delay(500);
 linefollowFiveUntil(2);
 delay(500);
 // //////// left move
-moveLeftEncoder(300,100);
+moveLeftEncoder(305,100);
 delay(500);
-backLinefollowFiveEncoder(10);
+
+ moveMainToOneEighty();
 delay(500);
-moveMainToOneEighty();
+backLinefollowFiveEncoder(80);
 delay(500);
 // linefollowFiveEncoder(20);
 
-
+rightServo.write(0);
+delay(500);
+linefollowFiveEncoder(200);
+delay(500);
 servoMove(&rightServo,0,70);
 delay(500);
+  
 // ///////////Pick 3rd tree/////////
-linefollowFiveEncoder(20);
-delay(500);
+
 ///// line until 2
-linefollowFiveUntil(2);
+linefollowFiveUntil(1);
 delay(500);
 
 ///right move
 moveRightEncoder(300,100);
+delay(500);
+linefollowFiveEncoder(10);
 delay(500);
 /////until 1
 linefollowFiveUntil(1);
@@ -111,18 +117,19 @@ delay(500);
 //left move
 moveLeftEncoder(300,100);
 delay(500);
-linefollowFiveEncoder(10);
-delay(500);
+
 //until 1
 linefollowFiveEncoder(15);
+delay(500);
+servoMove(&rightServo,70,0);
 delay(500);
 linefollowFiveUntil(1);
 delay(500);
 ////////placing 1st /////////////
+
 linefollowEncoder(50);
 delay(500);
-servoMove(&rightServo,70,0);
-delay(500);
+
 // ///////Drop red one
 // ////// back line follow until 5
 backlinefollowfiveUntil(5);
