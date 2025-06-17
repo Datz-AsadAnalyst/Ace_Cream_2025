@@ -3,7 +3,8 @@
 #include <Encoder.h>
 #include <Line_Follow.h>
 #include "Servocontrol.h"
-#include <Blue/Blue_Grid19.h>
+#include <Blue/heats.h>
+#include<Color_servo.h>
 
 #define LEFT_ENCODER_PIN 2
 #define RIGHT_ENCODER_PIN 3
@@ -122,12 +123,21 @@ void setup()
   Serial.begin(9600);
   configurePins();
   initServos();
-  // all_set();
-  // delay(1000);
-  
-//  mainServo.write(6);
- blue_grid19();
 
+  all_set();
+  delay(1000);
+  
+heat();
+
+//  mainServo.write(6);
+//  blue_grid19();
+// servoMove(&mainServo,0,6);
+// delay(500);
+// servoMove(&frontServo,0,0);
+// delay(500);
+// servoMove(&leftServo,0,0);
+// delay(500);
+// servoMove(&rightServo,0,0);
 
 // backlinefollowfiveUntil(2);
 

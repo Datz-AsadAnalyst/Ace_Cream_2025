@@ -2,6 +2,7 @@
 #include<Motors.h>
 #include<Line_Follow.h>
 #include<Servocontrol.h>
+#include<Color_servo.h>
 #ifndef _Heats_H_
 #define _Heats_H_
 void heat(){
@@ -10,10 +11,13 @@ void heat(){
  *
  *  grid is 3x3 the points are (1,2), (2,1) and (2,3)
 */
+ 
+
+
 lineFollowUntil(4);
 delay(1000);
 ///Left move
-moveLeftEncoder(296,100);
+moveLeftEncoder(310,100);
 delay(500);
 linefollowFiveEncoder(50);
 delay(500);
@@ -41,12 +45,12 @@ delay(500);
 leftServo.write(0);
 delay(500);
 
-linefollowFiveEncoder(35);
+linefollowFiveEncoder(50);
 delay(500);
 
 ////untill 1
 linefollowFiveUntil(1);
-linefollowFiveEncoder(90);
+linefollowFiveEncoder(100);
 delay(100);
 
 // ////////////Pick 1st tree//////////////
@@ -58,21 +62,21 @@ delay(500);
 servoMove(&mainServo,0,70);
 delay(500);
 
-linefollowFiveEncoder(10);
+linefollowFiveEncoder(20);
 delay(500);
 
 ///////// line until
-linefollowFiveUntil(2);
+linefollowFiveUntil(1);
 delay(500);
 ///left move
-moveLeftEncoder(305,100);
+moveLeftEncoder(300,100);
 delay(500);
 
-backLinefollowFiveEncoder(78);
+backLinefollowFiveEncoder(90);
 delay(500);
 frontServo.write(0);
 delay(500);
-moveForwardEncoder(180,50);
+linefollowFiveEncoder(120);
 delay(500);
 // ////////////Pick 2nd tree//////////////
 servoMove(&frontServo,0,70);
@@ -87,7 +91,7 @@ delay(500);
 moveLeftEncoder(305,100);
 delay(500);
 
- moveMainToOneEighty();
+ servoMove(&mainServo,66,126);
 delay(500);
 backLinefollowFiveEncoder(80);
 delay(500);
@@ -118,46 +122,65 @@ delay(500);
 moveLeftEncoder(300,100);
 delay(500);
 
-//until 1
-linefollowFiveEncoder(15);
-delay(500);
-servoMove(&rightServo,70,0);
-delay(500);
-linefollowFiveUntil(1);
-delay(500);
-////////placing 1st /////////////
 
-linefollowEncoder(50);
-delay(500);
 
-// ///////Drop red one
-// ////// back line follow until 5
-backlinefollowfiveUntil(5);
-delay(500);
-backLinefollowFiveEncoder(20);
-delay(500);
 
-//////////placing 2nd //////////
-servoMove(&leftServo,70,30);
+
+
+
+////////////////done
+
+
+
+
+
+
+
+setupColorSensors();
+RedColorBox(400);
 delay(500);
-linefollowFiveEncoder(20);
-delay(500);
-////////drop other one
-///// left move
-moveLeftEncoder(300,100);
-delay(500);
-linefollowFiveEncoder(60);
-delay(500);
-/////// line untill 4
-linefollowFiveUntil(4);
-delay(500);
-//left move
-moveLeftEncoder(300,100);
-delay(500);
-linefollowFiveEncoder(10);
-delay(500);
-servoMove(&frontServo,70,0);
-delay(500);
+remain();
+
+// //until 1
+// linefollowFiveEncoder(15);
+// delay(500);
+// servoMove(&rightServo,70,0);
+// delay(500);
+// linefollowFiveUntil(1);
+// delay(500);
+// ////////placing 1st /////////////
+
+// linefollowEncoder(50);
+// delay(500);
+
+// // ///////Drop red one
+// // ////// back line follow until 5
+// backlinefollowfiveUntil(5);
+// delay(500);
+// backLinefollowFiveEncoder(20);
+// delay(500);
+
+// //////////placing 2nd //////////
+// servoMove(&leftServo,70,30);
+// delay(500);
+// linefollowFiveEncoder(20);
+// delay(500);
+// ////////drop other one
+// ///// left move
+// moveLeftEncoder(300,100);
+// delay(500);
+// linefollowFiveEncoder(60);
+// delay(500);
+// /////// line untill 4
+// linefollowFiveUntil(4);
+// delay(500);
+// //left move
+// moveLeftEncoder(300,100);
+// delay(500);
+// linefollowFiveEncoder(10);
+// delay(500);
+// servoMove(&frontServo,70,0);
+// delay(500);
 // ////////drop other one
 ////// back until 2
 backlinefollowfiveUntil(2);
