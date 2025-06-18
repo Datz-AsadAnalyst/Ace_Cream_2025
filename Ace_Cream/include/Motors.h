@@ -29,21 +29,7 @@ void moveBackward(int speed) {
 
 
 
-// Slight left (curve)
-void softLeft() {
-  analogWrite(leftMotorForwardPwm, 50);  // Slow left motor
-  analogWrite(leftMotorBackwardPwm, 0);
-  analogWrite(rightMotorForwardPwm, 100);  // Fast right motor
-  analogWrite(rightMotorBackwardPwm, 0);
-}
 
-// Slight right (curve)
-void softRight() {
-  analogWrite(leftMotorForwardPwm, 100);  // Fast left motor
-  analogWrite(leftMotorBackwardPwm, 0);
-  analogWrite(rightMotorForwardPwm, 50);  // Slow right motor
-  analogWrite(rightMotorBackwardPwm, 0);
-}
 
 // Turn 90 degrees right (in place)
 void turnRight90(int speed) {
@@ -60,6 +46,26 @@ void turnLeft90(int speed) {
   analogWrite(rightMotorForwardPwm, speed);
   analogWrite(rightMotorBackwardPwm, 0);
 }
+
+// Turn 90 degrees right (in place)
+void turnRight(int speed) {
+  analogWrite(leftMotorForwardPwm, speed);
+  analogWrite(leftMotorBackwardPwm, 0);
+  analogWrite(rightMotorForwardPwm, 0);
+  analogWrite(rightMotorBackwardPwm, 0);
+}
+
+// Turn 90 degrees left (in place)
+void turnLeft(int speed) {
+  analogWrite(leftMotorForwardPwm, 0);
+  analogWrite(leftMotorBackwardPwm, 0);
+  analogWrite(rightMotorForwardPwm, speed);
+  analogWrite(rightMotorBackwardPwm, 0);
+}
+
+
+
+
 
 // Stop both motors
 void stopMotors() {

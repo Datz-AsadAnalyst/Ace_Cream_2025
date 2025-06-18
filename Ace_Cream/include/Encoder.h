@@ -85,40 +85,40 @@ void moveRightEncoder(int targetTicks, int speed) {
   stopMotors();
 }
 
-void softLeftEncoder(int targetTicks, int leftSpeed, int rightSpeed) {
-  leftEncoderTick = 0;
-  rightEncoderTick = 0;
+// void softLeftEncoder(int targetTicks, int leftSpeed, int rightSpeed) {
+//   leftEncoderTick = 0;
+//   rightEncoderTick = 0;
 
- softLeft();
+//  softLeft();
 
-  while (leftEncoderTick < targetTicks && rightEncoderTick < targetTicks) {
-    Serial.print("Soft Left -> Left: ");
-    Serial.print(leftEncoderTick);
-    Serial.print(" | Right: ");
-    Serial.println(rightEncoderTick);
-  }
+//   while (leftEncoderTick < targetTicks && rightEncoderTick < targetTicks) {
+//     Serial.print("Soft Left -> Left: ");
+//     Serial.print(leftEncoderTick);
+//     Serial.print(" | Right: ");
+//     Serial.println(rightEncoderTick);
+//   }
 
-  stopMotors();
-}
+//   stopMotors();
+// }
 
-void softRightEncoder(int targetTicks, int leftSpeed, int rightSpeed) {
-  leftEncoderTick = 0;
-  rightEncoderTick = 0;
+// void softRightEncoder(int targetTicks, int leftSpeed, int rightSpeed) {
+//   leftEncoderTick = 0;
+//   rightEncoderTick = 0;
 
-  analogWrite(leftMotorForwardPwm, leftSpeed);   // Fast left motor
-  analogWrite(leftMotorBackwardPwm, 0);
-  analogWrite(rightMotorForwardPwm, rightSpeed); // Slow right motor
-  analogWrite(rightMotorBackwardPwm, 0);
+//   analogWrite(leftMotorForwardPwm, leftSpeed);   // Fast left motor
+//   analogWrite(leftMotorBackwardPwm, 0);
+//   analogWrite(rightMotorForwardPwm, rightSpeed); // Slow right motor
+//   analogWrite(rightMotorBackwardPwm, 0);
 
-  while (leftEncoderTick < targetTicks && rightEncoderTick < targetTicks) {
-    Serial.print("Soft Right -> Left: ");
-    Serial.print(leftEncoderTick);
-    Serial.print(" | Right: ");
-    Serial.println(rightEncoderTick);
-  }
+//   while (leftEncoderTick < targetTicks && rightEncoderTick < targetTicks) {
+//     Serial.print("Soft Right -> Left: ");
+//     Serial.print(leftEncoderTick);
+//     Serial.print(" | Right: ");
+//     Serial.println(rightEncoderTick);
+//   }
 
-  stopMotors();
-}
+//   stopMotors();
+// }
 
 
 

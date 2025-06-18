@@ -51,6 +51,8 @@ void linefollow(int speed)
   int frontcenter = analogRead(front[2]) > 700 ? 1 : 0;
   int frontRight = analogRead(front[3]) > 700 ? 1 : 0;
 
+ 
+
   if (frontLeft == 0 && frontcenter == 0 && frontRight == 0)
   {
     moveForward(speed);
@@ -61,11 +63,11 @@ void linefollow(int speed)
   }
   else if (frontLeft == 0 && frontcenter == 1 && frontRight == 1)
   {
-    turnLeft90(speed);
+    turnLeft(speed);
   }
   else if (frontLeft == 1 && frontcenter == 1 && frontRight == 0)
   {
-    turnRight90(speed);
+    turnRight(speed);
   }
   else
   {
@@ -93,7 +95,7 @@ void lineFollowUntil(int count) {
     }
 
     if (strips_count < count) {
-      linefollow(80);
+      linefollow(40);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {

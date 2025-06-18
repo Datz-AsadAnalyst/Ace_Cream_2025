@@ -15,9 +15,14 @@ Servo frontServo;
 // =================== Servo Pin Configuration ===================
 int mainServoPin = 47;
 int frontServoPin = 53;
-int leftServoPin = 51;
-int rightServoPin = 49;
+int leftServoPin = 49;
+int rightServoPin = 51;
 
+/////////////////////////
+
+int angle0=140;
+int angle90=77;
+int angle180=15;
 // =================== Servo Position State ===================
 int main_servo_current_position = 130;
 bool servo1_got_box = false;
@@ -81,15 +86,18 @@ void all_set(){
   leftServo.attach(leftServoPin);
   rightServo.attach(rightServoPin);
 
-  mainServo.write(7);  
-  delay(200);     // Start at 0 degrees
-  frontServo.write(70); 
-   delay(200);      // Neutral position
-  leftServo.write(70);    
-   delay(200);    // Neutral
-  rightServo.write(70);  
-   delay(200);     // Neutral
+
+ 
+    mainServo.write(angle0);  
   delay(1000);
+ 
+  frontServo.write(80); 
+   delay(300);      // Neutral position
+  leftServo.write(80);    
+   delay(300);    // Neutral
+  rightServo.write(80);  
+   delay(1000);     // Neutral
+   
 
 }
 
@@ -165,11 +173,15 @@ void RedColorBox(int ticks_of_encoder) {
 
 void remain(){
 if(main_servo_current_position== 0){
+   
+
   //line follow
    backlinefollowfiveUntil(5);
 delay(500);
 backLinefollowFiveEncoder(20);
 delay(500);
+ servoMove(&frontServo,0,66);
+ delay(500);
     /// drop right
     Servo1Move(85,13);
     //////
@@ -196,6 +208,8 @@ backlinefollowfiveUntil(5);
 delay(500);
 backLinefollowFiveEncoder(20);
 delay(500);
+ servoMove(&frontServo,0,66);
+ delay(500);
 ////move 180 
 servoMove(&mainServo,66,126);
 delay(500);
@@ -224,6 +238,8 @@ else {
 delay(500);
 backLinefollowFiveEncoder(20);
 delay(500);
+ servoMove(&frontServo,0,66);
+ delay(500);
     /// drop right
     Servo2Move(85,13);
     //////

@@ -124,9 +124,21 @@ void setup()
   configurePins();
   initServos();
 
+
+
+
   all_set();
   delay(1000);
+
+  // lineFollowUntil(5);
+  // mainServo.write(angle0);
+  // delay(1000);
+  //   mainServo.write(angle90);
+  // delay(1000);
+  //   mainServo.write(angle180);
+  // delay(1000);
   
+
 heat();
 
 //  mainServo.write(6);
@@ -182,6 +194,7 @@ void loop()
 
   // readmid();
   // Serial.print(" ");
+ 
 }
 
 // put function definitions here:
