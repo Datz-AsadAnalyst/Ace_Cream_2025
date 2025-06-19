@@ -135,55 +135,54 @@ void RedColorBox(int ticks_of_encoder) {
 
   if (leftSensor >= RED_MIN && leftSensor <= RED_MAX) {
     // RED detected at LEFT sensor --> Use LEFT SERVO (comes in front at 0 deg)
-    mainServoMove(main_servo_current_position, 0);
-    Servo1Move(85, 17);  // LEFT SERVO
-    delay(500);
-    linefollowEncoder(ticks_of_encoder);
-    delay(500);
-    leftServo.write(0);  // Reset position
-    delay(300);
-    main_servo_current_position = 0;
+    // mainServoMove(main_servo_current_position, angle0);
+    servoMove(&mainServo,angle180,angle0);
+    delay(2000);
+    // servoMove(&leftServo,70, angle0);  // LEFT SERVO
+    leftServo.write(0);
+    delay(2000);
+    linefollowFiveEncoder(ticks_of_encoder);
+    delay(2000);
+  
+    main_servo_current_position = angle0;
     servo1_got_box = false;
 
   } else if (frontSensor >= RED_MIN && frontSensor <= RED_MAX) {
     // RED detected at FRONT sensor --> Use FRONT SERVO (at 90 deg)
-    mainServoMove(main_servo_current_position, 90);
-    Servo3Move(85, 17);  // FRONT SERVO
+    mainServoMove(main_servo_current_position, angle90);
+    // servoMove(&frontServo,70,angle0);  // FRONT SERVO
+    frontServo.write(0);
     delay(500);
     linefollowEncoder(ticks_of_encoder);
     delay(500);
-    frontServo.write(0);
-    delay(300);
-    main_servo_current_position = 90;
+    main_servo_current_position = angle90;
     servo3_got_box = false;
 
   } else {
     // No detection --> Move to RIGHT position (180 deg) and try
-    mainServoMove(main_servo_current_position, 180);
-    Servo2Move(85, 17);  // RIGHT SERVO
+    mainServoMove(main_servo_current_position, angle180);
+    // servoMove(&rightServo,70, angle0);  // RIGHT SERVO
+    rightServo.write(0);
     delay(500);
     linefollowEncoder(ticks_of_encoder);
     delay(500);
-    rightServo.write(0);
-    delay(300);
-    main_servo_current_position = 180;
+   
+    main_servo_current_position = angle180;
     servo2_got_box = false;
   }
 }
 
 void remain(){
 if(main_servo_current_position== 0){
-   
 
-  //line follow
-   backlinefollowfiveUntil(5);
+  backLinefollowFiveEncoder(10); 
+  delay(500);
+rightServo.write(90);
+backLinefollowFiveEncoder(40);
 delay(500);
-backLinefollowFiveEncoder(20);
-delay(500);
- servoMove(&frontServo,0,66);
+ servoMove(&rightServo,0,66);
  delay(500);
-    /// drop right
-    Servo1Move(85,13);
+   ;
     //////
     linefollowFiveEncoder(20);
 delay(500);
@@ -200,22 +199,23 @@ delay(500);
     moveLeftEncoder(300,100);
 delay(500);
     ////drop front
-    Servo3Move(83,17);
+   servoMove(&frontServo,angle90,angle0);
 } else if(main_servo_current_position==90){
 
 ///line follow
-backlinefollowfiveUntil(5);
-delay(500);
+
+  backLinefollowFiveEncoder(10); 
+  delay(500);
+  servoMove(&mainServo,angle90,angle180);
+  delay(500);
+leftServo.write(90);
 backLinefollowFiveEncoder(20);
 delay(500);
- servoMove(&frontServo,0,66);
+ servoMove(&leftServo,0,66);
  delay(500);
 ////move 180 
-servoMove(&mainServo,66,126);
-delay(500);
-////drop left 
-Servo2Move(66,0);
-delay(500);
+
+
 ///line follow
 linefollowFiveEncoder(20);
 delay(500);
@@ -230,18 +230,22 @@ delay(500);
 moveLeftEncoder(300,100);
 delay(500);
 ///drop right
-Servo1Move(66,0);
+servoMove(&frontServo,angle90,angle0);
 }
 else {
+
+  
     //line follow
-   backlinefollowfiveUntil(5);
-delay(500);
+  
+  backLinefollowFiveEncoder(10); 
+    delay(500);
+leftServo.write(90);
 backLinefollowFiveEncoder(20);
 delay(500);
- servoMove(&frontServo,0,66);
+ servoMove(&leftServo,angle90,angle0);
  delay(500);
     /// drop right
-    Servo2Move(85,13);
+  ;
     //////
     linefollowFiveEncoder(20);
 delay(500);
@@ -261,7 +265,7 @@ delay(500);
      moveLeftEncoder(300,100);
 delay(500);
     ////drop front
-    Servo3Move(83,17);
+   servoMove(&frontServo,angle90,angle0);
     ///line follow
     ////drop left
     ////line follow

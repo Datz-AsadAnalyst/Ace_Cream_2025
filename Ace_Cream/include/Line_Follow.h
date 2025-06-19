@@ -95,7 +95,7 @@ void lineFollowUntil(int count) {
     }
 
     if (strips_count < count) {
-      linefollow(40);
+      linefollow(50);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {
@@ -162,7 +162,7 @@ void linefollowWithFive(int speed)
   int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
   int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
 
-    if (Mid_l==0 && Mid_r==0 && !is_line) {
+    if ((Mid_l==0 || Mid_r==0) && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -232,11 +232,11 @@ void Backlinefollow(int speed)
   }
   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
   {
-    turnLeft90(speed);
+    turnLeft(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
   {
-    turnRight90(speed);
+    turnRight(speed);
   }
   else
   {
@@ -256,7 +256,7 @@ void backlinefollowUntil(int count) {
   int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
   int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
 
-    if (Mid_l==0 && Mid_r==0 && !is_line) {
+    if ((Mid_l==0 || Mid_r==0) && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -265,7 +265,7 @@ void backlinefollowUntil(int count) {
     }
 
     if (strips_count < count) {
-     Backlinefollow(80);
+     Backlinefollow(50);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {
@@ -288,29 +288,30 @@ void BacklinefollowWithFive(int speed)
   int backRight = analogRead(back[3]) > threshold ? 1 : 0;
   int backRightmost = analogRead(back[4]) > threshold ? 1 : 0;
 
-  if (backLeft == 0 && backcenter == 0 && backRight == 0)
-  {
-    moveBackward(speed);
-  }
-  else if (backLeft == 1 && backcenter == 0 && backRight == 1)
+ 
+   if (backLeft == 1 && backcenter == 0 && backRight == 1)
   {
     moveBackward(speed);
   }
   else if (backLeft == 0 && backcenter == 1 && backRight == 1)
   {
-    turnLeft90(speed);
+    turnLeft(speed);
   }
   else if (backLeftmost == 0 && backcenter == 1 && backRight == 1)
   {
-    turnLeft90(speed);
+    turnLeft(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRight == 0)
   {
-    turnRight90(speed);
+    turnRight(speed);
   }
   else if (backLeft == 1 && backcenter == 1 && backRightmost == 0)
   {
-    turnRight90(speed);
+    turnRight(speed);
+  }
+  else if (backLeft == 0 && backcenter == 0 && backRight == 0)
+  {
+    moveBackward(speed);
   }
   else
   {
@@ -332,7 +333,7 @@ void backlinefollowfiveUntil(int count) {
   int Mid_r = analogRead(MID_right) > 700 ? 1 : 0;
   int Mid_l = analogRead(MID_left) > 700 ? 1 : 0;
 
-    if (Mid_l==0 && Mid_r==0 && !is_line) {
+    if ((Mid_l==0 || Mid_r==0) && !is_line) {
       strips_count++;
       is_line = true;
       previousMillis = millis();
@@ -341,7 +342,7 @@ void backlinefollowfiveUntil(int count) {
     }
 
     if (strips_count < count) {
-      BacklinefollowWithFive(80);
+      BacklinefollowWithFive(50);
       Serial.print("Strips: ");
       Serial.println(strips_count);
     } else {

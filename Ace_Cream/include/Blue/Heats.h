@@ -72,7 +72,7 @@ delay(500);
 moveLeftEncoder(300,100);
 delay(500);
 
-backLinefollowFiveEncoder(120);
+backLinefollowFiveEncoder(150);
 delay(500);
 frontServo.write(0);
 delay(500);
@@ -87,19 +87,25 @@ delay(500);
 /////line
 lineFollowUntil(2);
 delay(500);
+
+backLinefollowFiveEncoder(50);
+delay(500);
 // //////// left move
-moveLeftEncoder(305,100);
+moveLeftEncoder(300,100);
 delay(500);
 
  servoMove(&mainServo,angle90,angle180);
 delay(500);
-backLinefollowFiveEncoder(80);
+// backlinefollowfiveUntil(1);
+// delay(500);
+// lineFollowUntil(1);
+backLinefollowFiveEncoder(200);
 delay(500);
 // linefollowFiveEncoder(20);
 
 rightServo.write(0);
 delay(500);
-linefollowFiveEncoder(250);
+linefollowFiveEncoder(320);
 delay(500);
 servoMove(&rightServo,0,70);
 delay(500);
@@ -110,10 +116,13 @@ delay(500);
 lineFollowUntil(1);
 delay(500);
 
-///right move
-moveRightEncoder(300,100);
+backLinefollowFiveEncoder(50);
 delay(500);
-linefollowFiveEncoder(10);
+///right move
+moveRightEncoder(310,100);
+delay(500);
+// backLinefollowFiveEncoder(50);
+linefollowFiveEncoder(50);
 delay(500);
 /////until 1
 lineFollowUntil(1);
@@ -132,13 +141,19 @@ delay(500);
 
 
 
-
+// servoMove(&mainServo,angle180,angle0);
 
 
 
 setupColorSensors();
-RedColorBox(400);
+RedColorBox(600);
 delay(500);
+
+ //line follow
+   backlinefollowUntil(5);
+delay(500);
+ 
+
 remain();
 
 // //until 1
